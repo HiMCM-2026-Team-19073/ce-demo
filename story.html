@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cooling People, Not Air</title>
+<meta name="description" content="How efficient is cooling in open and semi-open public spaces? HiMCM 2026 Problem B, Team 19073.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%231f5f3f'/%3E%3Crect x='3' y='3' width='4' height='10' fill='%23f4f2ec'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#s0">Skip to content</a>
+
+<header class="mast">
+  <div class="wrap grid">
+    <p class="label c-1-3"><a class="home" href="story.html">Team 19073</a></p>
+    <nav aria-label="Pages and sections">
+      <a href="index.html" class="page">Workstation</a>
+      <a href="story.html" aria-current="page" class="page">Story</a>
+      
+      <span class="navsep" aria-hidden="true"></span>
+      <a href="#s2"><span>02</span>Freezer</a>
+      <a href="#s3"><span>03</span>Model</a>
+      <a href="#s4"><span>04</span>Bus stop</a>
+      <a href="#s5"><span>05</span>Station</a>
+      <a href="#s6"><span>06</span>Venues</a>
+      <a href="#s7"><span>07</span>Effective</a>
+      <a href="#s8"><span>08</span>Guidance</a>
+      <a href="#s9"><span>09</span>Limits</a>
+    </nav>
+  </div>
+</header>
+
+<main id="s0">
+<!-- 00 HERO -->
+<section class="hero">
+  <div class="wrap grid">
+    <p class="label c-1-12">HiMCM 2026 &middot; Problem B &middot; Cooling open and semi-open public spaces</p>
+    <h1>Cooling People,<br><em>Not Air.</em></h1>
+    <div class="lede-wrap">
+      <p class="lede">The best cooler is not the one that chills the most air. It is the one that takes away the most heat people cannot shed &mdash; per watt.</p>
+      <p class="cta-row"><a class="cta" href="index.html">Work the model yourself &rarr;</a> <a class="cta ghost" href="#s4">Explore the results &darr;</a></p>
+    </div>
+    <div class="stats" aria-label="Headline results">
+      <div class="stat">
+        <div class="v num" data-v="r1|chilled|leak_share" data-f="pct0">&ndash;</div>
+        <div class="t">of an open fridge's cooling load is warm air leaking in.</div>
+      </div>
+      <div class="stat">
+        <div class="v num" data-v="r2a|Honolulu|devices|C|comfy_share" data-f="pct0">&ndash;</div>
+        <div class="t">of hot hours comfortable at a Honolulu bus stop with the large cooler &mdash; the <em>least</em> efficient device per watt.</div>
+      </div>
+      <div class="stat">
+        <div class="v num neg" data-v="dehum|Honolulu|rows|Dehumidifier (Quest 506)|eta_N" data-f="signed3">&ndash;</div>
+        <div class="t">efficiency of a dehumidifier in a semi-open station. It leaves people worse off.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 PROBLEM -->
+<section class="s" id="s1">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">01</div><span class="label">The problem</span></div>
+    <div class="s-head">
+      <h2>Open spaces leak cooling.</h2>
+      <p class="lede">Cooling a bus stop is like cooling a kitchen with the freezer door open.</p>
+    </div>
+    <div class="c-4-6 block">
+      <p>Wind carries cold air away within seconds. So we do not count cold air made. We count <strong>heat taken off people, per watt</strong>.</p>
+      <p class="small"><a href="index.html#st1">Work the leak out yourself in the workstation, station 01 &rarr;</a></p>
+    </div>
+    <div class="c-10-3 block">
+      <ol class="steps small">
+        <li>What should efficiency count?</li>
+        <li>Which device wins at a bus stop, and in a station?</li>
+        <li>Does it hold in four very different venues?</li>
+        <li>What should be installed, and how is it run?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 02 R1 FREEZER -->
+<section class="s" id="s2">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">02</div><span class="label">Requirement 1 &middot; Freezer case</span></div>
+    <div class="s-head">
+      <h2>Count the job, not the load.</h2>
+    </div>
+    <div class="c-4-6 block">
+      <p>An open display case spills cold air. Counting all heat removed would make a leakier case look <em>better</em>. So we count only what an ideal sealed case would need.</p>
+      <div class="formula">
+        <span class="eq"><var>&eta;</var><sub>Q</sub> = <var>Q</var><sub>ref</sub> / <var>P</var></span>
+        <span class="plain">Cooling the job needs &divide; electricity drawn.</span>
+      </div>
+      <p class="worked"><span class="label">Chilled case</span>
+        <b class="num" data-v="r1|chilled|q_ref_w" data-f="int"></b> W needed &divide; <b class="num" data-v="r1|chilled|p_electric_w" data-f="int"></b> W drawn = <b class="num" data-v="r1|chilled|eta_Q" data-f="f2"></b>. Frozen: <b class="num" data-v="r1|frozen|eta_Q" data-f="f2"></b>.</p>
+    </div>
+    <figure class="c-4-9 block">
+      <svg class="chart" id="chart-r1" role="img" aria-label="Where the cooling load of an open display case comes from"></svg>
+      <figcaption>Cooling load in watts. Everything except the leak is what the job needs.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 03 MODEL -->
+<section class="s" id="s3">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">03</div><span class="label">The model</span></div>
+    <div class="s-head">
+      <h2>An air box, and a body with two nodes.</h2>
+      <p class="lede">Run for every hour of a real summer.</p>
+    </div>
+    <figure class="c-1-12 block">
+      <svg class="chart" id="diagram" role="img" aria-label="Diagram: the air box exchanges air with outside through its openings; a device adds cool air; a two-node body exchanges heat between core and skin and loses heat to the air."></svg>
+    </figure>
+    <div class="c-1-4 block">
+      <h3>Air</h3>
+      <p class="small"><var>V</var> d<var>T</var>/d<var>t</var> = <var>Q</var>(<var>T</var><sub>out</sub> &minus; <var>T</var>) + sources &minus; cooling. More openness, more <var>Q</var>, more leak.</p>
+    </div>
+    <div class="c-5-8 block" style="grid-column:5 / span 4">
+      <h3>Body</h3>
+      <p class="small"><var>w</var> = <var>E</var><sub>req</sub>/<var>E</var><sub>max</sub>: share of sweating capacity in use. Comfortable at <var>w</var> &le; <b class="num" data-v="constants|w_comfort" data-f="f2"></b>. Core and skin are free to warm, so the model sees fan harm and older adults' risk.</p>
+    </div>
+    <div class="c-9-4 block">
+      <h3>Score</h3>
+      <p class="small"><var>&eta;</var><sub>N</sub> = <var>N</var>&middot;&Delta;need / <var>P</var>. Need = heat a person cannot shed comfortably. Phoenix fan: <b class="num" data-v="r2a|Phoenix|devices|A|eta_N" data-f="f3"></b>. <span id="w0-ratio" hidden></span></p>
+    </div>
+    <p class="c-1-12 block"><a class="cta" href="index.html">Build it step by step, with your own numbers &rarr;</a></p>
+  </div>
+</section>
+
+<!-- 04 R2a BUS STOP -->
+<section class="s" id="s4">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">04</div><span class="label">Requirement 2a &middot; Bus stop</span></div>
+    <div class="s-head">
+      <h2>The fan wins per watt. The cooler wins on comfort.</h2>
+      <p class="lede">A fan (A), an evaporative cooler (B), a large evaporative cooler (C).</p>
+    </div>
+    <figure class="c-1-12 block">
+      <svg class="chart" id="chart-r2a" role="img" aria-label="Efficiency and comfortable share of hot hours, by device, for Phoenix and Honolulu bus stops"></svg>
+      <figcaption>Every hot hour, summer 2024. <span id="r2a-safe"></span></figcaption>
+    </figure>
+
+    <div class="c-1-12 block rule-top tool" id="explorer">
+      <div class="grid">
+        <div class="c-1-4">
+          <p class="label green">Try it</p>
+          <h3>Set the weather.</h3>
+          <p class="small">Drag temperature and humidity. Watch which device wins and whether people stay comfortable.</p>
+        </div>
+        <div class="c-5-8">
+          <div class="controls">
+            <div class="ctl"><span class="label" id="lab-space">Space</span>
+              <div class="seg" role="group" aria-labelledby="lab-space" id="ex-space"></div></div>
+            <div class="ctl"><label class="label" for="ex-T">Air temperature</label>
+              <div class="range-row"><input type="range" id="ex-T" min="27" max="46" step="1" value="34"><output id="ex-T-out" for="ex-T"></output></div></div>
+            <div class="ctl"><label class="label" for="ex-RH">Relative humidity</label>
+              <div class="range-row"><input type="range" id="ex-RH" min="5" max="100" step="5" value="30"><output id="ex-RH-out" for="ex-RH"></output></div></div>
+          </div>
+        </div>
+        <div class="c-1-12">
+          <p class="verdict" id="ex-verdict" aria-live="polite"></p>
+          <div class="dev-cols" id="ex-out" aria-live="polite"></div>
+          <p class="snapnote" id="ex-snap"></p>
+          <p class="note" id="ex-note"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 R2b STATION -->
+<section class="s" id="s5">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">05</div><span class="label">Requirement 2b &middot; Station</span></div>
+    <div class="s-head">
+      <h2>Open the walls, and the ranking turns over.</h2>
+      <p class="lede">Openness <var>&Omega;</var> is a dial. Turn it.</p>
+    </div>
+    <div class="c-4-6 block">
+      <p>Nearly closed: still air, so the fan's breeze is worth most. Open a little: wind blows for free, while the cooler's cold air still collects &mdash; B takes over. <span id="om-flip"></span></p>
+      <p class="worked" id="r2b-worked"><span class="label">Bus stop model vs station model, Phoenix</span></p>
+    </div>
+    <div class="c-1-12 block tool" id="omega">
+      <div class="controls">
+        <div class="ctl"><span class="label" id="lab-osite">Weather</span><div class="seg" role="group" aria-labelledby="lab-osite" id="om-site"></div></div>
+        <div class="ctl"><label class="label" for="om-r">Openness &Omega;</label>
+          <div class="range-row"><input type="range" id="om-r" min="0" max="89" step="1" value="50"><output id="om-out" for="om-r"></output></div></div>
+      </div>
+      <figure>
+        <svg class="chart" id="chart-om" role="img" aria-label="Efficiency of each device against openness"></svg>
+      </figure>
+      <div class="dev-cols" id="om-read" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 R3 VENUES -->
+<section class="s" id="s6">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">06</div><span class="label">Requirement 3 &middot; Four venues</span></div>
+    <div class="s-head">
+      <h2>Four venues chosen to disagree.</h2>
+      <p class="lede">Desert, tropics, mild coast, closed hall.</p>
+    </div>
+    <div class="c-4-6 block">
+      <p>One rule everywhere: drop anything not safe in <span class="num" data-v="constants|safe_bar" data-f="pct0"></span> of hot hours, then take the most efficient option that makes <span class="num" data-v="r3|target" data-f="pct0"></span> of hot hours comfortable. Then shake every input and count flips.</p>
+    </div>
+    <div class="c-1-12 block venues" id="venues"></div>
+    <div class="c-1-12 block rule-top">
+      <div class="grid">
+        <div class="c-1-4">
+          <h3>What drives efficiency</h3>
+          <p class="small" id="drv-note"></p>
+        </div>
+        <figure class="c-5-8">
+          <svg class="chart" id="chart-drv" role="img" aria-label="Main drivers of efficiency, open and semi-open"></svg>
+          <figcaption>Share of the spread in efficiency explained by each input.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 R4 EFFECTIVENESS -->
+<section class="s" id="s7">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">07</div><span class="label">Requirement 4 &middot; Effectiveness</span></div>
+    <div class="s-head">
+      <h2>Efficient is not effective.</h2>
+      <p class="lede">Safety first. Then comfort. Then cost.</p>
+    </div>
+    <div class="c-4-6 block">
+      <ol class="steps">
+        <li><span><strong>Safe</strong> in <span class="num" data-v="constants|safe_bar" data-f="pct0"></span> of hot hours, or out.</span></li>
+        <li><span><strong>Comfortable</strong> in <span class="num" data-v="r4|target" data-f="pct0"></span> of hot hours (one tie rule: within <span class="num" data-v="constants|tie_pp" data-f="pp"></span> point counts).</span></li>
+        <li><span><strong>Cheapest</strong> per comfortable person-hour.</span></li>
+      </ol>
+    </div>
+    <div class="c-1-12 block tool" id="r4">
+      <div class="controls"><div class="ctl"><span class="label" id="lab-r4">Pick a venue</span><div class="seg" role="group" aria-labelledby="lab-r4" id="r4-tabs"></div></div></div>
+      <p class="verdict" id="r4-verdict" aria-live="polite"></p>
+      <div class="tbl-wrap"><table class="data" id="r4-table"></table></div>
+      <p class="note" id="r4-note"></p>
+    </div>
+    <div class="c-1-12 block rule-top">
+      <div class="grid">
+        <div class="c-1-5">
+          <h3>The dehumidifier: a useful failure</h3>
+          <p>Drier air should feel better. But condensing water releases heat, and the compressor adds more. <strong>The dry air drifts out; the heat stays.</strong></p>
+          <p class="worked" id="dehum-worked"></p>
+        </div>
+        <figure class="c-7-6">
+          <svg class="chart" id="chart-dh" role="img" aria-label="Efficiency of devices and dehumidifiers in the semi-open station, Honolulu"></svg>
+          <figcaption>Honolulu station. Left of zero: people end up worse off.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 R5 GUIDANCE -->
+<section class="s" id="s8">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">08</div><span class="label">Requirement 5 &middot; Guidance</span></div>
+    <div class="s-head">
+      <h2>What to install.</h2>
+      <p class="lede">Find your weather. Read the device.</p>
+    </div>
+    <div class="c-4-6 block">
+      <p><strong>Fan rule:</strong> a fan alone only up to <b class="num" data-v="r5|fan_cap" data-f="int"></b> &deg;C at people. Harm lines: <span id="cap-groups"></span>.</p>
+    </div>
+    <div class="c-1-12 block dgrids" id="dgrids"></div>
+    <p class="c-1-12 note" id="dg-note"></p>
+    <div class="c-1-12 block rule-top">
+      <div class="grid">
+        <div class="c-1-4">
+          <h3>When nothing is safe</h3>
+          <p class="small">Cooling the air is not the answer. Change the timing, or stay in.</p>
+        </div>
+        <ol class="ladder c-5-8" id="ladder"></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 LIMITS -->
+<section class="s" id="s9">
+  <div class="wrap grid">
+    <div class="marker-wrap"><div class="marker">09</div><span class="label">Limits</span></div>
+    <div class="s-head">
+      <h2>What we checked, and what we could not.</h2>
+    </div>
+    <div class="c-4-6 block">
+      <ul class="plain" id="valid"></ul>
+    </div>
+    <div class="c-10-3 block">
+      <ul class="plain small">
+        <li>Lenient for older adults.</li>
+        <li>Station hall airflow is 2-D only.</li>
+        <li>Indoor air is one well-mixed box.</li>
+        <li>Some device values are assumed and flagged.</li>
+        <li>Results are provisional.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap grid">
+    <p class="label c-1-6" style="color:var(--ink)">HiMCM 2026 Problem B &mdash; Team 19073</p>
+    <p class="c-7-6">Cooling efficiency in open and semi-open public spaces.</p>
+  </div>
+</footer>
+
+<noscript><p class="wrap">This page draws its numbers and charts with JavaScript. Please enable it.</p></noscript>
+<script src="data/site.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
